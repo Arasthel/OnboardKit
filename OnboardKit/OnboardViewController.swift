@@ -65,9 +65,10 @@ final public class OnboardViewController: UIViewController {
     return pageVC
   }
 
-  private func advanceToPageWithIndex(_ pageIndex: Int) {
+  public func advanceToPageWithIndex(_ pageIndex: Int) {
     DispatchQueue.main.async { [weak self] in
       guard let nextPage = self?.pageViwControllerFor(pageIndex: pageIndex) else { return }
+      self?.pageItems[pageIndex-1].dismissAction?()
       self?.pageViewController.setViewControllers([nextPage],
                                                   direction: .forward,
                                                   animated: true,
@@ -137,6 +138,7 @@ extension OnboardViewController: OnboardPageViewControllerDelegate {
 
   func pageViewController(_ pageVC: OnboardPageViewController, advanceTappedAt index: Int) {
     if index == pageItems.count - 1 {
+      pageItems[index].dismissAction?()
       dismiss(animated: true, completion: nil)
     } else {
       advanceToPageWithIndex(index + 1)

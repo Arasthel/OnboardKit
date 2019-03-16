@@ -8,7 +8,7 @@ import Foundation
 public typealias OnboardPageCompletion = ((_ success: Bool, _ error: Error?) -> Void)
 public typealias OnboardPageAction = (@escaping OnboardPageCompletion) -> Void
 
-public struct OnboardPage {
+open class OnboardPage {
   /// The title text used for the top label of the onboarding page
   let title: String
 
@@ -34,18 +34,22 @@ public struct OnboardPage {
   ///
   /// - note: calling the completion on the action will advance the onboarding to the next page
   let action: OnboardPageAction?
+    
+  let dismissAction: (() -> ())?
 
   public init(title: String,
               imageName: String? = nil,
               description: String?,
               advanceButtonTitle: String = NSLocalizedString("Next", comment: ""),
               actionButtonTitle: String? = nil,
-              action: OnboardPageAction? = nil) {
+              action: OnboardPageAction? = nil,
+              dismissAction: (() -> ())? = nil) {
     self.title = title
     self.imageName = imageName
     self.description = description
     self.advanceButtonTitle = advanceButtonTitle
     self.actionButtonTitle = actionButtonTitle
     self.action = action
+    self.dismissAction = dismissAction
   }
 }
