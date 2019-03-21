@@ -54,6 +54,7 @@ internal final class OnboardPageViewController: UIViewController {
     label.font = UIFont.preferredFont(forTextStyle: .title3)
     label.numberOfLines = 0
     label.textAlignment = .center
+    label.adjustsFontSizeToFitWidth = true
     return label
   }()
 

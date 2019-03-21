@@ -75,6 +75,10 @@ final public class OnboardViewController: UIViewController {
                                                   completion: nil)
     }
   }
+    
+  public override var preferredStatusBarStyle: UIStatusBarStyle {
+    return appearanceConfiguration.statusBarStyle
+  }
 }
 
 // MARK: Presenting
@@ -191,6 +195,8 @@ public extension OnboardViewController {
     ///
     /// - note: Defualts to nil. If not used, the button will be customized based on the title properties
     let actionButtonStyling: ButtonStyling?
+    
+    let statusBarStyle: UIStatusBarStyle
 
     public init(tintColor: UIColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0),
                 titleColor: UIColor? = nil,
@@ -199,7 +205,8 @@ public extension OnboardViewController {
                 titleFont: UIFont = UIFont.preferredFont(forTextStyle: .title1),
                 textFont: UIFont = UIFont.preferredFont(forTextStyle: .body),
                 advanceButtonStyling: ButtonStyling? = nil,
-                actionButtonStyling: ButtonStyling? = nil) {
+                actionButtonStyling: ButtonStyling? = nil,
+                statusBarStyle: UIStatusBarStyle = UIStatusBarStyle.default) {
       self.tintColor = tintColor
       self.titleColor = titleColor ?? textColor
       self.textColor = textColor
@@ -208,6 +215,7 @@ public extension OnboardViewController {
       self.textFont = textFont
       self.advanceButtonStyling = advanceButtonStyling
       self.actionButtonStyling = actionButtonStyling
+      self.statusBarStyle = statusBarStyle
     }
   }
 }
